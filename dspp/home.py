@@ -1,5 +1,8 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import numpy as pn
+import seaborn as sn
+import plotly.express as pl
 from charger import charge
 import streamlit as st
 import analyse
@@ -79,36 +82,25 @@ def main() :
                    st.header("analyse univariée")
                    with st.expander("categorielle") :
                      cat=st.selectbox("select",dat.select_dtypes("object").columns,on_change=None)
-                     def cate(dat,cat) :
-                         import plotly.express as pl
-                           
-                         tab=dat[cat].value_counts().reset_index() 
-                         if dat[cat].nunique()<5 :
-                              fig=pl.pie(tab,names=cat,values="count")
-                              st.plotly_chart(fig)
-                         else :
-                           fig=pl.bar(tab,x=cat,y="count",text_auto="")
+                     tab=dat[cat].value_counts().reset_index() 
+                     if dat[cat].nunique()<5 :
+                           fig=pl.pie(tab,names=cat,values="count")
                            st.plotly_chart(fig)
-                     cate(dat,cat)      
+                     else :
+                         fig=pl.bar(tab,x=cat,y="count",text_auto="")
+                         st.plotly_chart(fig)
                    with st.expander("numerique") : 
                         num=st.selectbox("select",dat.select_dtypes("int64").columns,on_change=None)
-                        def nums(dat,num):
-                           import plotly.express as pl
-                           fig=pl.histogram(dat,x=num)
-                           st.plotly_chart(fig)
-                        nums(dat,num)   
-                           
+                        fig=pl.histogram(dat,x=num)
+                        st.plotly_chart(fig)
              with col2 : 
                         with st.container(height=480,border=True) :
                              st.header("analyse bivariée")
                              with st.expander("categorielle_numerique") :
                                cats=st.selectbox("select",dat.select_dtypes("object").columns,on_change=None,key=10)
                                nums=st.selectbox("select",dat.select_dtypes("int64").columns,on_change=None,key=11)
-                               def catts() :
-                                   import plotly.express as pl
-                                   fig=pl.box(dat,x=cats,y=nums)
-                                   st.plotly_chart(fig)
-                               catts()     
+                               fig=pl.box(dat,x=cats,y=nums)
+                               st.plotly_chart(fig)
              with st.container(height=480,border=True) : 
                  st.header("table de statistique")  
                  st.table(dat.describe().style.background_gradient())               
