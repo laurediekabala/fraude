@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as pn
 import seaborn as sn
 import plotly.express as pl
