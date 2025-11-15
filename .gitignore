@@ -1,0 +1,58 @@
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyc
+
+# Environnements virtuels
+venv/
+*.env
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# pip logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Distribution / build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# ===============================
+# Streamlit / IDE
+# ===============================
+.streamlit/
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ===============================
+# Données et modèles
+# ===============================
+
+*.h5
+xgboost_model.json
+*.pkl
+
+# ===============================
+# OS
+# ===============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
