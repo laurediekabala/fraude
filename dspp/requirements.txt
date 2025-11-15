@@ -7,3 +7,5 @@ seaborn
 plotly
 scikit-learn
 numpy
+scipy
+shap
