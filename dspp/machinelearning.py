@@ -11,7 +11,7 @@ import joblib
 import shap
 st.cache_data()
 def train_test() :
-    x_train,x_test,y_train,y_test =charge.train_test(r"D:\fraude\donnees\bank.csv","deposit")
+    x_train,x_test,y_train,y_test =charge.train_test(r"E:\fraude\donnees\bank.csv","deposit")
     x_train.balance = x_train.balance.map(charge.balance)
     x_test.balance =  x_test.balance.map(charge.balance)
     x_train.pdays = x_train.pdays.map(charge.pdays)
@@ -46,11 +46,11 @@ def evaluation(ba) :
         st.pyplot()
 st.cache_data()        
 def feature()  :
-    data=charge.feature(r"D:\fraude\donnees\bank.csv","deposit") 
+    data=charge.feature(r"E:\fraude\donnees\bank.csv","deposit") 
     return data 
 st.cache_data() 
 def prediction(age,job,marital,education,default,balance,housing,loan,contact,day,month,duration,campaign,pdays,previous,poutcome) :
-     model=joblib.load(filename=r"D:\fraude\xgboostx.joblib")
+     model=joblib.load(filename=r"E:\fraude\xgboostx.joblib")
      x=pn.array([age,job,marital,education,default,balance,housing,loan,contact,day,month,duration,campaign,pdays,previous,poutcome]).reshape(1,16)
      if model.predict(x)==0 :
               predi=f"Le client va faire son dépôt à temps avec une probabilité de { model.predict_proba(x)[0][0]} "
