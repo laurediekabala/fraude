@@ -5,8 +5,7 @@ import plotly.express as pl
 from charger import charge
 import streamlit as st
 import pandas as pd
-from pathlib import Path
-donnees= Path(__file__).parent / "donnees" / "bank.csv"
+donnees= r"E:\fraude\donnees\bank.csv"
 def univ() :
     data= charge.univarie(donnees)    
 def cat_cat() :
