@@ -5,37 +5,38 @@ import plotly.express as pl
 from charger import charge
 import streamlit as st
 import pandas as pd
+donnees= r"donnees\bank.csv"
 def univ() :
-    data= charge.univarie(r"D:\fraude\donnees\bank.csv")    
+    data= charge.univarie(donnees)    
 def cat_cat() :
-    data= charge.cat_cat(r"D:\fraude\donnees\bank.csv")     
+    data= charge.cat_cat(donnees)     
 def balance() :
     balance= pd.Series
-    box=charge.ints(r"D:\fraude\donnees\bank.csv","balance") 
+    box=charge.ints(donnees,"balance") 
 def age() :
     balance= pd.Series
-    box=charge.ints(r"D:\fraude\donnees\bank.csv","age")  
+    box=charge.ints(donnees,"age")  
 def duration() :
     balance= pd.Series
-    box=charge.ints(r"D:\fraude\donnees\bank.csv","duration")     
+    box=charge.ints(donnees,"duration")     
 def pdays() :
     balance= pd.Series
-    box=charge.ints(r"D:\fraude\donnees\bank.csv","pdays")   
+    box=charge.ints(donnees,"pdays")   
 def previous() :
     balance= pd.Series
-    box=charge.ints(r"D:\fraude\donnees\bank.csv","previous")  
+    box=charge.ints(donnees,"previous")  
 def campaign() :
     balance= pd.Series
-    box=charge.ints(r"D:\fraude\donnees\bank.csv","campaign")  
+    box=charge.ints(donnees,"campaign")  
 def day() :
     balance= pd.Series
-    box=charge.ints(r"D:\fraude\donnees\bank.csv","day")                        
+    box=charge.ints(donnees,"day")                        
 
 def cible_int() :
-    box =charge.cible_int(r"D:\fraude\donnees\bank.csv","deposit")   
+    box =charge.cible_int(donnees,"deposit")   
 def int_cat() :
-     box=charge.int_cat(r"D:\fraude\donnees\bank.csv")
+     box=charge.int_cat(donnees)
 def int_int()  :   
-    table=charge.int_int(r"D:\fraude\donnees\bank.csv")
+    table=charge.int_int(donnees)
 def charger() :
-     return charge.chargement(r"D:\fraude\donnees\bank.csv")  
+     return charge.chargement(donnees)  
