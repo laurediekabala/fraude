@@ -1,10 +1,10 @@
-📄 README.md — Application Streamlit de Détection de Fraude Bancaire
+📄 README.md — Application Streamlit de Détection des clients qui vont souscrire à l'offre
 🏦 Application de Détection de Fraude Bancaire
 
 Prédiction en temps réel avec XGBoost & Streamlit
 
-Cette application Streamlit permet de détecter les transactions bancaires frauduleuses en utilisant un modèle de Machine Learning basé sur XGBoost.
-Elle a été développée à partir du dataset bank.csv, contenant des informations transactionnelles préalablement nettoyées et préparées.
+Cette application Streamlit permet de détecter les clients qui vont souscrire à l'offre en utilisant un modèle de Machine Learning basé sur XGBoost.
+Elle a été développée à partir du dataset bank.csv, contenant des informations concerant la souscription préalablement nettoyées et préparées.
 📌 Fonctionnalités principales
 
 ✔️ Interface web interactive avec Streamlit
