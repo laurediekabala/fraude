@@ -11,6 +11,13 @@ from charger import charge
 import streamlit as st
 import joblib
 import shap
+import os
+# Obtenir le chemin absolu du dossier dspp/
+BASE_DIR = os.path.dirname(__file__)
+# Construire le chemin vers donnees/bank.csv
+donnees = os.path.join(BASE_DIR, "..", "donnees", "bank.csv")
+# Normaliser le chemin pour éviter les problèmes Windows/Linux
+donnees = os.path.abspath(donnees)
 
 # -----------------------------
 # CACHING
@@ -21,7 +28,7 @@ def train_test():
     Charge et prépare les données (balance, pdays transformés via charger.charge).
     Retour : x_train, x_test, y_train, y_test
     """
-    x_train, x_test, y_train, y_test = charge.train_test(r"E:\fraude\donnees\bank.csv", "deposit")
+    x_train, x_test, y_train, y_test = charge.train_test(donnees, "deposit")
 
     # Appliquer les mappings fournis dans charger
     for df in (x_train, x_test):
@@ -43,7 +50,7 @@ x_train, x_test, y_train, y_test = train_test()
 @st.cache_data
 def feature():
     """Renvoie le dataframe de features (pour les selectbox du formulaire)."""
-    return charge.feature(r"E:\fraude\donnees\bank.csv", "deposit")
+    return charge.feature(donnees, "deposit")
 
 
 def evaluation(model_base):
@@ -139,9 +146,18 @@ def evaluation(model_base):
 # PREDICTION (UI)
 # -----------------------------
 @st.cache_data
-def _load_model(path=r"E:\fraude\xgboostx.joblib"):
+def _load_model(path=None):
     """Charge et met en cache le modèle pour éviter de le recharger à chaque prédiction."""
-    return joblib.load(path)
+    if path is None:
+        # chemin du fichier courant
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # dossier racine = dspp/ .. → fraude/
+        project_root = os.path.abspath(os.path.join(current_dir, ".."))
+
+        # chemin complet vers le modèle dans fraude/
+        path = os.path.join(project_root, "xgboostx.joblib")
+        return joblib.load(path)
 
 
 def prediction(age, job, marital, education, default_val, balance_val,
@@ -161,9 +177,9 @@ def prediction(age, job, marital, education, default_val, balance_val,
     pred = int(model.predict(x)[0])
 
     if pred == 0:
-        return f"Le client va faire son dépôt à temps (probabilité = {proba[0]:.4f})"
+        return f"Le client ne va pas faire son dépôt à temps (probabilité = {proba[0]:.4f})"
     else:
-        return f"Le client va faire son dépôt en retard (probabilité = {proba[1]:.4f})"
+        return f"Le client va faire son dépôt à temps (probabilité = {proba[1]:.4f})"
 
 
 # -----------------------------
