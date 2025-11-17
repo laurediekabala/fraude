@@ -8,7 +8,7 @@ from sklearn.metrics import classification_report,confusion_matrix,ConfusionMatr
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 class charge :
-    source = r"donnees\bank.csv"
+    source = "donnees\bank.csv"
     st.cache_data
     def __init__(self,s:pd.Series) -> pd.Series:
          serie =self.s
